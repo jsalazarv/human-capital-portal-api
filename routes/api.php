@@ -18,8 +18,10 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
-Route::get('/users', [UserController::class, 'index']);
-Route::post('/users', [UserController::class, 'store']);
-Route::put('/users/{id}', [UserController::class, 'update']);
-Route::get('/users/{id}', [UserController::class, 'show']);
-Route::delete('/users/{id}', [UserController::class, 'destroy']);
+Route::group(['prefix' => 'users'], function () {
+    Route::get('/', [UserController::class, 'index']);
+    Route::post('/', [UserController::class, 'store']);
+    Route::put('/{id}', [UserController::class, 'update']);
+    Route::get('/{id}', [UserController::class, 'show']);
+    Route::delete('/{id}', [UserController::class, 'destroy']);
+});
