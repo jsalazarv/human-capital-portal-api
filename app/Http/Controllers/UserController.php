@@ -2,22 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return JsonResponse
+     * @param Request $request
+     * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $users = User::paginate($request->get('pageSize'));
 
-        return response()->json($users);
+        return UserResource::collection($users);
     }
 
     /**
@@ -31,8 +35,7 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->get('name');
         $user->email = $request->get('email');
-        $user->password = $request->get('password');
-
+        $user->password = Hash::make( $request->get('password'));
         $user->save();
 
         return response()->json($user);
@@ -73,7 +76,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param $id
      * @return JsonResponse
      */
     public function destroy($id)
