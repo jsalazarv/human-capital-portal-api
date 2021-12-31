@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Ramsey\Uuid\Type\Integer;
 
 /**
  * Class User
@@ -16,6 +17,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string password
  * @method static findOrFail($id)
  * @method static find(int $id)
+ * @method static paginate(int $pageSize)
  */
 class User extends Authenticatable
 {
