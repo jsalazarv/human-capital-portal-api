@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocialNetworkController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,8 @@ Route::group(['prefix' => 'profiles'], function () {
     Route::get('/', [ProfileController::class, 'index']);
     Route::put('/{id}', [ProfileController::class, 'update']);
     Route::get('/{id}', [ProfileController::class, 'show']);
+});
+
+Route::group(['prefix' => 'social-networks'], function () {
+    Route::get('/', [SocialNetworkController::class, 'index']);
 });
