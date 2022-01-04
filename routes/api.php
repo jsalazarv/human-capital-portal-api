@@ -29,4 +29,5 @@ Route::group(['prefix' => 'users'], function () {
 
 Route::group(['prefix' => 'profiles'], function () {
     Route::get('/', [ProfileController::class, 'index']);
+    Route::put('/{id}', [ProfileController::class, 'update']);
 });

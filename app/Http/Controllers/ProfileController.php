@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProfileResource;
 use App\Models\Profile;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -47,13 +48,20 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
+     * @throws \Throwable
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): JsonResponse
     {
-        //
+        $profile = Profile::findOrFail($id);
+        $profile->nickname = $request->get('nickname');
+        $profile->lastname = $request->get('lastname');
+        $profile->phone = $request->get('phone');
+        $profile->address = $request->get('address');
+
+        $profile->updateOrFail();
+        return response()->json($profile);
     }
 
     /**
