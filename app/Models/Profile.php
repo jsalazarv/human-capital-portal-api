@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @method static paginate($get)
  * @method static findOrFail($id)
+ * @method static find(int $id)
  * @property number user_id
  * @property string nickname
  * @property string lastname
