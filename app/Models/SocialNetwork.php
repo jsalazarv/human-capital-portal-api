@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static paginate($get)
+ * @method static find(int $id)
  */
 class SocialNetwork extends Model
 {
