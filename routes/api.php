@@ -23,17 +23,18 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'users'], function () {
     Route::get('/', [UserController::class, 'index']);
     Route::post('/', [UserController::class, 'store']);
-    Route::put('/{id}', [UserController::class, 'update']);
     Route::get('/{id}', [UserController::class, 'show']);
+    Route::put('/{id}', [UserController::class, 'update']);
     Route::delete('/{id}', [UserController::class, 'destroy']);
 });
 
 Route::group(['prefix' => 'profiles'], function () {
     Route::get('/', [ProfileController::class, 'index']);
-    Route::put('/{id}', [ProfileController::class, 'update']);
     Route::get('/{id}', [ProfileController::class, 'show']);
+    Route::put('/{id}', [ProfileController::class, 'update']);
 });
 
 Route::group(['prefix' => 'social-networks'], function () {
     Route::get('/', [SocialNetworkController::class, 'index']);
+    Route::get('/{id}', [SocialNetworkController::class, 'show']);
 });
