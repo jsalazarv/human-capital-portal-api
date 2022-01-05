@@ -16,7 +16,7 @@ class SocialNetworkController extends Controller
      * @param Request $request
      * @return AnonymousResourceCollection
      */
-    public function index(Request $request)
+    public function index(Request $request): AnonymousResourceCollection
     {
         $socialNetworks = SocialNetwork::paginate($request->get('pageSize'));
 
@@ -39,12 +39,19 @@ class SocialNetworkController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): JsonResponse
     {
-        //
+        $socialNetworks = SocialNetwork::findOrFail($id);
+
+        $socialNetworks->name = $request->get('name');
+        $socialNetworks->nickname = $request->get('nickname');
+        $socialNetworks->link = $request->get('link');
+
+        $socialNetworks->updateOrFail();
+        return response()->json($socialNetworks);
     }
 }
