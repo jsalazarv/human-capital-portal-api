@@ -37,4 +37,5 @@ Route::group(['prefix' => 'profiles'], function () {
 Route::group(['prefix' => 'social-networks'], function () {
     Route::get('/', [SocialNetworkController::class, 'index']);
     Route::get('/{id}', [SocialNetworkController::class, 'show']);
+    Route::put('/{id}', [SocialNetworkController::class, 'update']);
 });
